@@ -8,7 +8,7 @@
 
             <solid
                 android:id="@+id/background_color"
-                android:color="#FF8A80"/>
+                android:color="#FFFFFF"/>
 
             <size
                 android:width="120dp"
