@@ -90,6 +90,7 @@
             android:layout_height="match_parent">
 
             <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/postive_feedback_icon"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:tint="@color/sampleColor"
@@ -117,6 +118,7 @@
             android:background="@drawable/review_action_ripple"
             android:layout_height="match_parent">
             <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/negative_feedback_icon"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:tint="@color/sampleColor"
@@ -145,6 +147,7 @@
             android:layout_height="match_parent">
 
             <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/ambiguity_feedback_icon"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:tint="@color/sampleColor"

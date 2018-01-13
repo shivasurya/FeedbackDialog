@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
-import android.os.Build;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
@@ -53,6 +52,11 @@ public class FeedBackDialog {
     private TextView positiveFeedbackTextView;
     private TextView negativeFeedbackTextView;
     private TextView ambiguityFeedbackTextView;
+
+    private ImageView positiveFeedbackIconView;
+    private ImageView negativeFeedbackIconView;
+    private ImageView ambiguityFeedbackIconView;
+
 
     @StringRes
     private int mPositiveFeedbackText;
@@ -105,6 +109,10 @@ public class FeedBackDialog {
         positiveFeedbackTextView = mDialog.findViewById(R.id.positive_feedback_text);
         negativeFeedbackTextView = mDialog.findViewById(R.id.negative_feedback_text);
         ambiguityFeedbackTextView = mDialog.findViewById(R.id.ambiguity_feedback_text);
+
+        positiveFeedbackIconView = mDialog.findViewById(R.id.postive_feedback_icon);
+        negativeFeedbackIconView = mDialog.findViewById(R.id.negative_feedback_icon);
+        ambiguityFeedbackIconView = mDialog.findViewById(R.id.ambiguity_feedback_icon);
     }
 
     private void initiateListeners()
@@ -158,8 +166,13 @@ public class FeedBackDialog {
             reviewQuestionTextView.setText(mContext.getString(this.mReviewQuestion));
 
             positiveFeedbackTextView.setText(this.mPositiveFeedbackText);
+            positiveFeedbackIconView.setColorFilter(Color.parseColor(mIconColor));
+
             negativeFeedbackTextView.setText(this.mNegativeFeedbackText);
+            negativeFeedbackIconView.setColorFilter(Color.parseColor(mIconColor));
+
             ambiguityFeedbackTextView.setText(this.mAmbiguityFeedbackText);
+            ambiguityFeedbackIconView.setColorFilter(Color.parseColor(mIconColor));
 
             feedbackBodyLayout.setBackgroundResource(this.mBackgroundColor);
 
