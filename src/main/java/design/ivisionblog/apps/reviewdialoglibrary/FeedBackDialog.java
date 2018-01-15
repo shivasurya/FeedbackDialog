@@ -3,9 +3,11 @@ package design.ivisionblog.apps.reviewdialoglibrary;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
+import android.os.Build;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
@@ -155,7 +157,15 @@ public class FeedBackDialog {
 
             Drawable drawable = mContext.getResources().getDrawable(this.mIcon);
             Drawable wrappedDrawable = DrawableCompat.wrap(drawable);
-            DrawableCompat.setTint(drawable.mutate(), Color.parseColor(mIconColor));
+
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            {
+                DrawableCompat.setTint(drawable.mutate(), Color.parseColor(mIconColor));
+            }
+            else
+            {
+                drawable.setColorFilter(Color.parseColor(mIconColor), PorterDuff.Mode.SRC_IN);
+            }
 
 
             layerDrawable.setDrawableByLayerId(R.id.drawable_image,drawable);
@@ -329,7 +339,7 @@ public class FeedBackDialog {
     {
         if(mReviewActionsListener != null)
         {
-            mReviewActionsListener.onSuccess(this);
+            mReviewActionsListener.onPositiveFeedback(this);
         }
     }
 
@@ -337,7 +347,7 @@ public class FeedBackDialog {
     {
         if(mReviewActionsListener != null)
         {
-            mReviewActionsListener.onFailure(this);
+            mReviewActionsListener.onNegativeFeedback(this);
         }
     }
 
@@ -345,7 +355,7 @@ public class FeedBackDialog {
     {
         if(mReviewActionsListener != null)
         {
-            mReviewActionsListener.onAmbiguity(this);
+            mReviewActionsListener.onAmbiguityFeedback(this);
         }
     }
 }

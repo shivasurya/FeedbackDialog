@@ -5,7 +5,7 @@ package design.ivisionblog.apps.reviewdialoglibrary;
  */
 public interface FeedBackActionsListeners
 {
-    void onSuccess(FeedBackDialog dialog);
-    void onFailure(FeedBackDialog dialog);
-    void onAmbiguity(FeedBackDialog dialog);
+    void onPositiveFeedback(FeedBackDialog dialog);
+    void onNegativeFeedback(FeedBackDialog dialog);
+    void onAmbiguityFeedback(FeedBackDialog dialog);
 }
