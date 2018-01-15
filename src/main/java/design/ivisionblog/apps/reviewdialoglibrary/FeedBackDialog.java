@@ -2,10 +2,13 @@ package design.ivisionblog.apps.reviewdialoglibrary;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
+import android.os.Build;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
@@ -24,7 +27,8 @@ public class FeedBackDialog {
     @DrawableRes
     private int mIcon;
 
-    private String mIconColor;
+    @ColorRes
+    private int mIconColor;
 
     @StringRes
     private int mTitle;
@@ -76,9 +80,6 @@ public class FeedBackDialog {
     @DrawableRes
     private int mAmbiguityFeedbackIcon;
 
-
-
-
     private Dialog mDialog;
 
     private FeedBackActionsListeners mReviewActionsListener;
@@ -87,32 +88,42 @@ public class FeedBackDialog {
     {
         this.mContext = mContext;
 
-        mDialog = new Dialog(mContext,R.style.Theme_Dialog);
+        mDialog = new Dialog(mContext,R.style.FeedbackDialog_Theme_Dialog);
         mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         mDialog.setContentView(R.layout.review_dialog_base);
+
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
+        {
+            int width = (int) (mContext.getResources().getDisplayMetrics().widthPixels * 0.90);
+            int height = (int) (mContext.getResources().getDisplayMetrics().heightPixels * 0.50);
+
+            if (mDialog.getWindow() != null) {
+                mDialog.getWindow().setLayout(width, height);
+            }
+        }
     }
 
     private void initiateAllViews()
     {
-        titleImageView          = mDialog.findViewById(R.id.review_icon);
-        titleTextView           = mDialog.findViewById(R.id.review_title);
-        descriptionTextView     = mDialog.findViewById(R.id.review_description);
-        reviewQuestionTextView  = mDialog.findViewById(R.id.review_questions);
+        titleImageView          = (ImageView) mDialog.findViewById(R.id.review_icon);
+        titleTextView           = (TextView) mDialog.findViewById(R.id.review_title);
+        descriptionTextView     = (TextView) mDialog.findViewById(R.id.review_description);
+        reviewQuestionTextView  = (TextView) mDialog.findViewById(R.id.review_questions);
 
-        feedbackBodyLayout      = mDialog.findViewById(R.id.feedback_body_layout);
+        feedbackBodyLayout      = (LinearLayout) mDialog.findViewById(R.id.feedback_body_layout);
 
-        positiveFeedbackLayout = mDialog.findViewById(R.id.postive_feedback_layout);
-        negativeFeedbackLayout = mDialog.findViewById(R.id.negative_feedback_layout);
-        ambiguityFeedbackLayout = mDialog.findViewById(R.id.ambiguity_feedback_layout);
+        positiveFeedbackLayout = (LinearLayout) mDialog.findViewById(R.id.postive_feedback_layout);
+        negativeFeedbackLayout = (LinearLayout) mDialog.findViewById(R.id.negative_feedback_layout);
+        ambiguityFeedbackLayout = (LinearLayout) mDialog.findViewById(R.id.ambiguity_feedback_layout);
 
 
-        positiveFeedbackTextView = mDialog.findViewById(R.id.positive_feedback_text);
-        negativeFeedbackTextView = mDialog.findViewById(R.id.negative_feedback_text);
-        ambiguityFeedbackTextView = mDialog.findViewById(R.id.ambiguity_feedback_text);
+        positiveFeedbackTextView = (TextView) mDialog.findViewById(R.id.positive_feedback_text);
+        negativeFeedbackTextView = (TextView) mDialog.findViewById(R.id.negative_feedback_text);
+        ambiguityFeedbackTextView = (TextView) mDialog.findViewById(R.id.ambiguity_feedback_text);
 
-        positiveFeedbackIconView = mDialog.findViewById(R.id.postive_feedback_icon);
-        negativeFeedbackIconView = mDialog.findViewById(R.id.negative_feedback_icon);
-        ambiguityFeedbackIconView = mDialog.findViewById(R.id.ambiguity_feedback_icon);
+        positiveFeedbackIconView = (ImageView) mDialog.findViewById(R.id.postive_feedback_icon);
+        negativeFeedbackIconView = (ImageView) mDialog.findViewById(R.id.negative_feedback_icon);
+        ambiguityFeedbackIconView = (ImageView) mDialog.findViewById(R.id.ambiguity_feedback_icon);
     }
 
     private void initiateListeners()
@@ -139,6 +150,17 @@ public class FeedBackDialog {
                 onAmbiguityFeedbackClicked(v);
             }
         });
+
+        if(mDialog != null)
+        {
+            mDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog)
+                {
+                    onCancelListener(dialog);
+                }
+            });
+        }
     }
 
     public FeedBackDialog show()
@@ -148,14 +170,22 @@ public class FeedBackDialog {
             initiateAllViews();
             initiateListeners();
 
-            LayerDrawable layerDrawable = (LayerDrawable) mContext.getResources().getDrawable(R.drawable.round_icon);
+            LayerDrawable layerDrawable = (LayerDrawable) mContext.getResources().getDrawable(R.drawable.reviewdialog_round_icon);
             GradientDrawable gradientDrawable = (GradientDrawable) layerDrawable.findDrawableByLayerId(R.id.round_background);
             gradientDrawable.setColor(Color.parseColor("#FFFFFF"));
             layerDrawable.setDrawableByLayerId(R.id.round_background,gradientDrawable);
 
             Drawable drawable = mContext.getResources().getDrawable(this.mIcon);
             Drawable wrappedDrawable = DrawableCompat.wrap(drawable);
-            DrawableCompat.setTint(drawable.mutate(), Color.parseColor(mIconColor));
+
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            {
+                DrawableCompat.setTint(drawable.mutate(), mContext.getResources().getColor(mIconColor));
+            }
+            else
+            {
+                drawable.setColorFilter(mContext.getResources().getColor(mIconColor), PorterDuff.Mode.SRC_IN);
+            }
 
 
             layerDrawable.setDrawableByLayerId(R.id.drawable_image,drawable);
@@ -166,13 +196,16 @@ public class FeedBackDialog {
             reviewQuestionTextView.setText(mContext.getString(this.mReviewQuestion));
 
             positiveFeedbackTextView.setText(this.mPositiveFeedbackText);
-            positiveFeedbackIconView.setColorFilter(Color.parseColor(mIconColor));
+            positiveFeedbackIconView.setImageResource(this.mPositiveFeedbackIcon);
+            positiveFeedbackIconView.setColorFilter(mContext.getResources().getColor(mIconColor));
 
             negativeFeedbackTextView.setText(this.mNegativeFeedbackText);
-            negativeFeedbackIconView.setColorFilter(Color.parseColor(mIconColor));
+            negativeFeedbackIconView.setImageResource(this.mNegativeFeedbackIcon);
+            negativeFeedbackIconView.setColorFilter(mContext.getResources().getColor(mIconColor));
 
             ambiguityFeedbackTextView.setText(this.mAmbiguityFeedbackText);
-            ambiguityFeedbackIconView.setColorFilter(Color.parseColor(mIconColor));
+            ambiguityFeedbackIconView.setImageResource(this.mAmbiguityFeedbackIcon);
+            ambiguityFeedbackIconView.setColorFilter(mContext.getResources().getColor(mIconColor));
 
             feedbackBodyLayout.setBackgroundResource(this.mBackgroundColor);
 
@@ -289,12 +322,12 @@ public class FeedBackDialog {
         return this;
     }
 
-    public String getIconColor()
+    public int getIconColor()
     {
         return mIconColor;
     }
 
-    public FeedBackDialog setIconColor(String mIconColor)
+    public FeedBackDialog setIconColor(@ColorRes int mIconColor)
     {
         this.mIconColor = mIconColor;
         return this;
@@ -329,7 +362,7 @@ public class FeedBackDialog {
     {
         if(mReviewActionsListener != null)
         {
-            mReviewActionsListener.onSuccess(this);
+            mReviewActionsListener.onPositiveFeedback(this);
         }
     }
 
@@ -337,7 +370,7 @@ public class FeedBackDialog {
     {
         if(mReviewActionsListener != null)
         {
-            mReviewActionsListener.onFailure(this);
+            mReviewActionsListener.onNegativeFeedback(this);
         }
     }
 
@@ -345,7 +378,15 @@ public class FeedBackDialog {
     {
         if(mReviewActionsListener != null)
         {
-            mReviewActionsListener.onAmbiguity(this);
+            mReviewActionsListener.onAmbiguityFeedback(this);
+        }
+    }
+
+    private void onCancelListener(DialogInterface dialog)
+    {
+        if (mReviewActionsListener != null)
+        {
+            mReviewActionsListener.onCancelListener(dialog);
         }
     }
 }
