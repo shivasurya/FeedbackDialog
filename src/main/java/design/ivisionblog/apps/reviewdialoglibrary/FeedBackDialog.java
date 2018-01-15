@@ -187,12 +187,15 @@ public class FeedBackDialog {
             reviewQuestionTextView.setText(mContext.getString(this.mReviewQuestion));
 
             positiveFeedbackTextView.setText(this.mPositiveFeedbackText);
+            positiveFeedbackIconView.setImageResource(this.mPositiveFeedbackIcon);
             positiveFeedbackIconView.setColorFilter(mContext.getResources().getColor(mIconColor));
 
             negativeFeedbackTextView.setText(this.mNegativeFeedbackText);
+            negativeFeedbackIconView.setImageResource(this.mNegativeFeedbackIcon);
             negativeFeedbackIconView.setColorFilter(mContext.getResources().getColor(mIconColor));
 
             ambiguityFeedbackTextView.setText(this.mAmbiguityFeedbackText);
+            ambiguityFeedbackIconView.setImageResource(this.mAmbiguityFeedbackIcon);
             ambiguityFeedbackIconView.setColorFilter(mContext.getResources().getColor(mIconColor));
 
             feedbackBodyLayout.setBackgroundResource(this.mBackgroundColor);
