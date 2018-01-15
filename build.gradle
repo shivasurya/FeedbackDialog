@@ -2,9 +2,6 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 26
-
-
-
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 26
@@ -13,6 +10,10 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+    }
+
+    defaultConfig {
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -26,6 +27,32 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation 'com.android.support:appcompat-v7:26.1.0'
 }
+
+ext {
+    bintrayRepo = 'FeedbackDialog'
+    bintrayName = 'FeedbackDialog'
+
+    publishedGroupId = 'design.ivisionblog.apps'
+    libraryName = 'FeedbackDialog'
+    artifact = 'FeedbackDialog'
+
+    libraryDescription = 'An Interactive Feedback Dialog for Android inspired from Google Maps Review section'
+
+    siteUrl = 'https://github.com/shivasurya/FeedbackDialog'
+    gitUrl = 'https://github.com/shivasurya/FeedbackDialog.git'
+
+    libraryVersion = '0.0.1-alpha'
+
+    developerId = 'shivasurya'
+    developerName = 's shivasurya'
+    developerEmail = 's.shivasurya@gmail.com'
+
+    licenseName = 'MIT'
+    licenseUrl = 'https://github.com/shivasurya/FeedbackDialog/blob/master/LICENSE'
+    allLicenses = ["MIT"]
+}
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
