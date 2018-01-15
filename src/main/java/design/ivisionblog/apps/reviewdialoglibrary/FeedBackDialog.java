@@ -26,7 +26,8 @@ public class FeedBackDialog {
     @DrawableRes
     private int mIcon;
 
-    private String mIconColor;
+    @ColorRes
+    private int mIconColor;
 
     @StringRes
     private int mTitle;
@@ -92,6 +93,16 @@ public class FeedBackDialog {
         mDialog = new Dialog(mContext,R.style.FeedbackDialog_Theme_Dialog);
         mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         mDialog.setContentView(R.layout.review_dialog_base);
+
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
+        {
+            int width = (int) (mContext.getResources().getDisplayMetrics().widthPixels * 0.90);
+            int height = (int) (mContext.getResources().getDisplayMetrics().heightPixels * 0.50);
+
+            if (mDialog.getWindow() != null) {
+                mDialog.getWindow().setLayout(width, height);
+            }
+        }
     }
 
     private void initiateAllViews()
@@ -160,11 +171,11 @@ public class FeedBackDialog {
 
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             {
-                DrawableCompat.setTint(drawable.mutate(), Color.parseColor(mIconColor));
+                DrawableCompat.setTint(drawable.mutate(), mContext.getResources().getColor(mIconColor));
             }
             else
             {
-                drawable.setColorFilter(Color.parseColor(mIconColor), PorterDuff.Mode.SRC_IN);
+                drawable.setColorFilter(mContext.getResources().getColor(mIconColor), PorterDuff.Mode.SRC_IN);
             }
 
 
@@ -176,13 +187,13 @@ public class FeedBackDialog {
             reviewQuestionTextView.setText(mContext.getString(this.mReviewQuestion));
 
             positiveFeedbackTextView.setText(this.mPositiveFeedbackText);
-            positiveFeedbackIconView.setColorFilter(Color.parseColor(mIconColor));
+            positiveFeedbackIconView.setColorFilter(mContext.getResources().getColor(mIconColor));
 
             negativeFeedbackTextView.setText(this.mNegativeFeedbackText);
-            negativeFeedbackIconView.setColorFilter(Color.parseColor(mIconColor));
+            negativeFeedbackIconView.setColorFilter(mContext.getResources().getColor(mIconColor));
 
             ambiguityFeedbackTextView.setText(this.mAmbiguityFeedbackText);
-            ambiguityFeedbackIconView.setColorFilter(Color.parseColor(mIconColor));
+            ambiguityFeedbackIconView.setColorFilter(mContext.getResources().getColor(mIconColor));
 
             feedbackBodyLayout.setBackgroundResource(this.mBackgroundColor);
 
@@ -299,12 +310,12 @@ public class FeedBackDialog {
         return this;
     }
 
-    public String getIconColor()
+    public int getIconColor()
     {
         return mIconColor;
     }
 
-    public FeedBackDialog setIconColor(String mIconColor)
+    public FeedBackDialog setIconColor(@ColorRes int mIconColor)
     {
         this.mIconColor = mIconColor;
         return this;

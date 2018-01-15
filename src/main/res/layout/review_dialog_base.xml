@@ -23,15 +23,18 @@
             <LinearLayout
                 android:id="@+id/feedback_body_layout"
                 android:orientation="vertical"
-                tools:background="#673AB7"
+                android:padding="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="125dp">
+                android:layout_height="wrap_content"
+                android:minHeight="125dp">
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/review_title"
                     android:gravity="center"
                     android:textStyle="bold"
                     android:textSize="14sp"
+                    android:ellipsize="marquee"
+                    android:singleLine="true"
                     android:layout_marginTop="30dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -41,6 +44,8 @@
                     android:textSize="12sp"
                     android:layout_marginTop="5dp"
                     android:id="@+id/review_description"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
                     tools:text="171, Straight Road, Cross Street"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -101,7 +106,9 @@
                 android:id="@+id/positive_feedback_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="YES"
+                tools:text="YES"
+                android:singleLine="true"
+                android:ellipsize="end"
                 android:gravity="center"
                 android:textColor="#000"
                 android:layout_marginTop="5dp"
@@ -115,7 +122,7 @@
             android:padding="20dp"
             android:clickable="true"
             android:focusable="true"
-            android:background="@drawable/review_action_ripple"
+            android:background="@drawable/reviewdialog_review_action_ripple"
             android:layout_height="match_parent">
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/negative_feedback_icon"
@@ -129,7 +136,9 @@
                 android:id="@+id/negative_feedback_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="NO"
+                tools:text="NO"
+                android:singleLine="true"
+                android:ellipsize="end"
                 android:gravity="center"
                 android:textColor="#000"
                 android:layout_marginTop="5dp"
@@ -143,7 +152,7 @@
             android:padding="20dp"
             android:clickable="true"
             android:focusable="true"
-            android:background="@drawable/review_action_ripple"
+            android:background="@drawable/reviewdialog_review_action_ripple"
             android:layout_height="match_parent">
 
             <android.support.v7.widget.AppCompatImageView
@@ -158,7 +167,9 @@
                 android:id="@+id/ambiguity_feedback_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="NOT SURE"
+                tools:text="NOT SURE"
+                android:singleLine="true"
+                android:ellipsize="end"
                 android:gravity="center"
                 android:textColor="#000"
                 android:layout_marginTop="5dp"
