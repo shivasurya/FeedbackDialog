@@ -2,6 +2,7 @@ package design.ivisionblog.apps.reviewdialoglibrary;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -79,9 +80,6 @@ public class FeedBackDialog {
     @DrawableRes
     private int mAmbiguityFeedbackIcon;
 
-
-
-
     private Dialog mDialog;
 
     private FeedBackActionsListeners mReviewActionsListener;
@@ -152,6 +150,17 @@ public class FeedBackDialog {
                 onAmbiguityFeedbackClicked(v);
             }
         });
+
+        if(mDialog != null)
+        {
+            mDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog)
+                {
+                    onCancelListener(dialog);
+                }
+            });
+        }
     }
 
     public FeedBackDialog show()
@@ -370,6 +379,14 @@ public class FeedBackDialog {
         if(mReviewActionsListener != null)
         {
             mReviewActionsListener.onAmbiguityFeedback(this);
+        }
+    }
+
+    private void onCancelListener(DialogInterface dialog)
+    {
+        if (mReviewActionsListener != null)
+        {
+            mReviewActionsListener.onCancelListener(dialog);
         }
     }
 }
