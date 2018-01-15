@@ -1,4 +1,4 @@
-# Feedback Dialog for Android
+# Feedback Dialog for Android   [ ![Download](https://api.bintray.com/packages/shivasurya/maven/feedback-dialog/images/download.svg) ](https://bintray.com/shivasurya/maven/feedback-dialog/_latestVersion)
 An Interactive Feedback Dialog for Android inspired from Google Maps Review section
 
 <p align="center">
@@ -14,3 +14,6 @@ Getting feedback from your customers, prospects is the most important task for d
 |<img src="/screenshots/screenshot1.png?raw=true" width="400" >| <img src="/screenshots/screenshot2.png?raw=true" width="400" > 
 |--|--|
 | <img src="/screenshots/screenshot3.png?raw=true" width="400" >| <img src="/screenshots/screenshot4.png?raw=true" width="400" >|
+
+### Install
+
