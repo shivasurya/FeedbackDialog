@@ -105,25 +105,25 @@ public class FeedBackDialog {
 
     private void initiateAllViews()
     {
-        titleImageView          = mDialog.findViewById(R.id.review_icon);
-        titleTextView           = mDialog.findViewById(R.id.review_title);
-        descriptionTextView     = mDialog.findViewById(R.id.review_description);
-        reviewQuestionTextView  = mDialog.findViewById(R.id.review_questions);
+        titleImageView          = (ImageView) mDialog.findViewById(R.id.review_icon);
+        titleTextView           = (TextView) mDialog.findViewById(R.id.review_title);
+        descriptionTextView     = (TextView) mDialog.findViewById(R.id.review_description);
+        reviewQuestionTextView  = (TextView) mDialog.findViewById(R.id.review_questions);
 
-        feedbackBodyLayout      = mDialog.findViewById(R.id.feedback_body_layout);
+        feedbackBodyLayout      = (LinearLayout) mDialog.findViewById(R.id.feedback_body_layout);
 
-        positiveFeedbackLayout = mDialog.findViewById(R.id.postive_feedback_layout);
-        negativeFeedbackLayout = mDialog.findViewById(R.id.negative_feedback_layout);
-        ambiguityFeedbackLayout = mDialog.findViewById(R.id.ambiguity_feedback_layout);
+        positiveFeedbackLayout = (LinearLayout) mDialog.findViewById(R.id.postive_feedback_layout);
+        negativeFeedbackLayout = (LinearLayout) mDialog.findViewById(R.id.negative_feedback_layout);
+        ambiguityFeedbackLayout = (LinearLayout) mDialog.findViewById(R.id.ambiguity_feedback_layout);
 
 
-        positiveFeedbackTextView = mDialog.findViewById(R.id.positive_feedback_text);
-        negativeFeedbackTextView = mDialog.findViewById(R.id.negative_feedback_text);
-        ambiguityFeedbackTextView = mDialog.findViewById(R.id.ambiguity_feedback_text);
+        positiveFeedbackTextView = (TextView) mDialog.findViewById(R.id.positive_feedback_text);
+        negativeFeedbackTextView = (TextView) mDialog.findViewById(R.id.negative_feedback_text);
+        ambiguityFeedbackTextView = (TextView) mDialog.findViewById(R.id.ambiguity_feedback_text);
 
-        positiveFeedbackIconView = mDialog.findViewById(R.id.postive_feedback_icon);
-        negativeFeedbackIconView = mDialog.findViewById(R.id.negative_feedback_icon);
-        ambiguityFeedbackIconView = mDialog.findViewById(R.id.ambiguity_feedback_icon);
+        positiveFeedbackIconView = (ImageView) mDialog.findViewById(R.id.postive_feedback_icon);
+        negativeFeedbackIconView = (ImageView) mDialog.findViewById(R.id.negative_feedback_icon);
+        ambiguityFeedbackIconView = (ImageView) mDialog.findViewById(R.id.ambiguity_feedback_icon);
     }
 
     private void initiateListeners()

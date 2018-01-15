@@ -2,7 +2,7 @@
 <resources>
 <style name="FeedbackDialog_Theme_Dialog" parent="Theme.AppCompat.Dialog">
     <item name="android:windowBackground">@android:color/transparent</item>
-    <item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
-    <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
+    <item name="android:windowMinWidthMajor">90%</item>
+    <item name="android:windowMinWidthMinor">90%</item>
 </style>
 </resources>
