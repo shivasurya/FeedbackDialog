@@ -89,7 +89,7 @@ public class FeedBackDialog {
     {
         this.mContext = mContext;
 
-        mDialog = new Dialog(mContext,R.style.Theme_Dialog);
+        mDialog = new Dialog(mContext,R.style.FeedbackDialog_Theme_Dialog);
         mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         mDialog.setContentView(R.layout.review_dialog_base);
     }
@@ -150,7 +150,7 @@ public class FeedBackDialog {
             initiateAllViews();
             initiateListeners();
 
-            LayerDrawable layerDrawable = (LayerDrawable) mContext.getResources().getDrawable(R.drawable.round_icon);
+            LayerDrawable layerDrawable = (LayerDrawable) mContext.getResources().getDrawable(R.drawable.reviewdialog_round_icon);
             GradientDrawable gradientDrawable = (GradientDrawable) layerDrawable.findDrawableByLayerId(R.id.round_background);
             gradientDrawable.setColor(Color.parseColor("#FFFFFF"));
             layerDrawable.setDrawableByLayerId(R.id.round_background,gradientDrawable);
