@@ -96,3 +96,4 @@ This is a time for discussion and improvements,
 and making the necessary changes will be required before we can merge the contribution.
 
 ### License
+[Apache-2.0](https://github.com/shivasurya/FeedbackDialog/blob/master/LICENSE)
