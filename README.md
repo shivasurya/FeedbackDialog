@@ -65,6 +65,32 @@ As simple as AlertDialog API,
 
 ### Feedback Dialog API 
 
+You can check below some of the exposed API methods to control the Dialog apperance and actions. Hereby I'll try to maintain backward compatibility for Minor version and patch version and probably breaking changes in Major version changes ( refer semver )
+
+1. ```setIcon(@DrawableRes int mIcon)``` - set Drawable Image at top of the Dialog as Icon. <br />
+2. ```setTitle(@StringRes int mTitle)``` -  set Title or Brand Name for the Feedback Dialog
+3. ```setDescription(@StringRes int mDescription)``` - set Description or Additional text for Feedback Dialog
+4. ```setPositiveFeedbackText(@StringRes int mPositiveFeedbackText)``` - set Positive Feedback button text
+5. ```setNegativeFeedbackText(@StringRes int mNegativeFeedbackText)``` - set Negative Feedback button text
+6. ```setAmbiguityFeedbackText(@StringRes int mAmbiguityFeedbackText``` - set Ambiguity Feedback button text
+7. ```setPositiveFeedbackIcon(@DrawableRes int mPositiveFeedbackIcon)``` - set Positive Feedback button Icon as drawable resource
+8. ```setNegativeFeedbackIcon(@DrawableRes int mNegativeFeedbackIcon)``` - set Negative Feedback button Icon as drawable resource
+9. ```setAmbiguityFeedbackIcon(@DrawableRes int mAmbiguityFeedbackIcon)``` - set Ambiguity Feedback button Icon as drawable resource
+10. ```setBackgroundColor(@ColorRes int mBackgroundColor)``` - set Feedback Dialog background color
+11. ```setIconColor(@ColorRes int mIconColor)``` - set Title and Action Icon colors
+12. ```setReviewQuestion(int mReviewQuestion)``` - set Questionable message to end-user which is shown in Dialog
+14. ```setOnReviewClickListener(FeedBackActionsListeners reviewActionsListeners)``` - set Feedback Action listeners which implements action listeners callback.
+15. ```dismiss()``` - dismiss the active Feedback Dialog
+
+API's which are added or removed will be updated in the above list. If possible, there will be seperate documentation site with examples in upcoming revisions.
+
+### RoadMap
+
+* Animating Popup style for dialog Icon and adding shadow to it.
+* Swipe left for next review similar to Google Maps reviews.
+* Animating Feedback dialog while opening and closing.
+
+
 ### Inspiration
 
 As Active `Google Maps reviewer`, usually I would answer review questions via Google Maps for Android. They have similar but better dialog to collect information and facts about the places with lot of animations like swipe, popup. Inspired from those user interface just thought to develop a component for collecting feedback without filling-up huge forms or monotonous UI.
