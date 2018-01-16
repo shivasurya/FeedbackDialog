@@ -1,4 +1,6 @@
-# Feedback Dialog for Android   [ ![Download](https://api.bintray.com/packages/shivasurya/maven/feedback-dialog/images/download.svg) ](https://bintray.com/shivasurya/maven/feedback-dialog/_latestVersion)
+# Feedback Dialog for Android   
+[ ![Download](https://api.bintray.com/packages/shivasurya/maven/feedback-dialog/images/download.svg) ](https://bintray.com/shivasurya/maven/feedback-dialog/_latestVersion)    [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 An Interactive Feedback Dialog for Android inspired from Google Maps Review section
 
 
@@ -22,7 +24,7 @@ Getting feedback from your customers, prospects is the most important task for d
 ### Getting Started
 
 As simple as AlertDialog API,
-```
+```java
           FeedBackDialog mDialog = new FeedBackDialog(MainActivity.this)
                 .setBackgroundColor(R.color.bgcolor)
                 .setIcon(R.drawable.brand_icon)
@@ -60,3 +62,37 @@ As simple as AlertDialog API,
                 })
                 .show();  // Finally don't forget to call show()
 ```
+
+### Feedback Dialog API 
+
+### Inspiration
+
+As Active `Google Maps reviewer`, usually I would answer review questions via Google Maps for Android. They have similar but better dialog to collect information and facts about the places with lot of animations like swipe, popup. Inspired from those user interface just thought to develop a component for collecting feedback without filling-up huge forms or monotonous UI.
+
+### Contribution and Issues
+
+We love contributions from everyone.
+By participating in this project,
+you agree to abide by the thoughtbot [code of conduct].
+
+  [code of conduct]: https://thoughtbot.com/open-source-code-of-conduct
+
+We expect everyone to follow the code of conduct
+anywhere in thoughtbot's project codebases,
+issue trackers, chatrooms, and mailing lists.
+
+### Contributing Code
+
+Make your change, with new passing tests. Follow the [style guide][style].
+
+  [style]: https://github.com/thoughtbot/guides/tree/master/style
+
+Push to your fork. Write a [good commit message][commit]. Submit a pull request.
+
+  [commit]: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+
+Others will give constructive feedback.
+This is a time for discussion and improvements,
+and making the necessary changes will be required before we can merge the contribution.
+
+### License
